@@ -1,40 +1,26 @@
 import pygame
-import time
 
-# 初始化pygame
-pygame.init()
+class Tetris():
 
-# Pygame窗口
-screen = pygame.display.set_mode((800,600)) 
+      # 全局变量
 
- # 标题
-pygame.display.set_caption("Pygame绘制图形")
+      # 窗口宽度
+      WINDOW_WIDTH=640
 
- # 循环变量标值
-keep_going = True
+      # 窗口高度
+      WINDOW_HIGHT=480
 
-  # 红色，使用RGB颜色
-color = [0,0,0]
-# 半径
-radius = 20 
+      # 方块尺寸
+      BOX_SIZE=20
 
-def ChangeTuple(t1,t2,t3):
-      return (t1,t2,t3)
+      #游戏窗口本身有10个方块的宽度
+      BOARD_WIDTH = 10
 
-# 游戏循环
-while keep_going:
-      for event in pygame.event.get():  # 遍历事件
-            if event.type == pygame.QUIT:  # 退出事件
-                  keep_going = False
-      
-      color[0]=color[1]=color[2]=color[0]+1
-      if(color[0]>=255):
-            color[0]=color[1]=color[2]=color[0]-255
+      #游戏窗口本身有20个方块的高度
+      BOARD_HEIGHT = 20
 
-      print(tuple(color))
-      pygame.draw.circle(screen,tuple(color),(200,300),radius)
-      pygame.display.update()  # 刷新屏幕
-      time.sleep(0.1)
 
-# 退出程序
-pygame.quit()
+      def __init__(self):
+            pygame.init()
+            
+
