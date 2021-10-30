@@ -18,7 +18,7 @@ class Tetris():
 
       #游戏窗口本身有20个方块的高度
       BOARD_HEIGHT = 20
-
+      
 
       def __init__(self):
             pygame.init()

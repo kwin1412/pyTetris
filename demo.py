@@ -141,22 +141,25 @@ PIECES = {'S': S_SHAPE_TEMPLATE, #PIECES是一个字典，它储存了所有不�
           'T': T_SHAPE_TEMPLATE}
 
 def main(): #main()函数还负责创建了一些其他的全局常量，并且显示了在游戏运行的时候出现的初始屏幕。
-    global FPSCLOCK, DISPLAYSURF, BASICFONT, BIGFONT
-    pygame.init()#在inport pygame之后 调用其他函数之前总要调用这个函数
-    FPSCLOCK = pygame.time.Clock()#pygame.time.Clock()创建pygame.time.Clock对象
-    DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT)) #pygame.display.set_mode()的参数是一个元组,该元祖中有两个参数，
-    #即：创建窗口的宽和高，单位是像素，该函数返回pygame.Surface对象
-    BASICFONT = pygame.font.Font('freesansbold.ttf', 18)#字体
-    BIGFONT = pygame.font.Font('freesansbold.ttf', 100)#字体
-    pygame.display.set_caption('Tetromino')#设置窗口标题
-    showTextScreen('Tetromino')#设置在开始界面显示的文字
-
-    while True: #游戏循环，该游戏循坏会在一秒之内多次检查是否发生了任何新的事件，例如：点击鼠标或按下键盘
+      global FPSCLOCK, DISPLAYSURF, BASICFONT, BIGFONT
+      pygame.init()#在inport pygame之后 调用其他函数之前总要调用这个函数
+      FPSCLOCK = pygame.time.Clock()#pygame.time.Clock()创建pygame.time.Clock对象
+      DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT)) #pygame.display.set_mode()的参数是一个元组,该元祖中有两个参数，
+      #即：创建窗口的宽和高，单位是像素，该函数返回pygame.Surface对象
+      BASICFONT = pygame.font.Font('freesansbold.ttf', 18)#字体
+      BIGFONT = pygame.font.Font('freesansbold.ttf', 100)#字体
+      pygame.display.set_caption('Tetromino')#设置窗口标题
+      showTextScreen('Tetromino')#设置在开始界面显示的文字
+      keep_going=True
+      while keep_going: #游戏循环，该游戏循坏会在一秒之内多次检查是否发生了任何新的事件，例如：点击鼠标或按下键盘
         #pygame.mixer.music.load('tetrisc.mp3')#加载音乐 
         #pygame.mixer.music.play(-1, 0.0)#播放音乐
-        runGame()#调用runGame()开始游戏，当游戏失败的时候,runGame()将返回main(),
-        pygame.mixer.music.stop()#然后main()会停止背景音乐
-        showTextScreen('Game Over')#并显示游戏结束屏幕。当玩家按下一个键，showTextScreen()函数将返回，程序回到main()中的的第一行，重新开始游戏
+            for event in pygame.event.get():  # 遍历事件
+                  if event.type == pygame.QUIT:  # 退出事件
+                        keep_going = False
+            runGame()#调用runGame()开始游戏，当游戏失败的时候,runGame()将返回main(),
+            #pygame.mixer.music.stop()#然后main()会停止背景音乐
+            showTextScreen('Game Over')#并显示游戏结束屏幕。当玩家按下一个键，showTextScreen()函数将返回，程序回到main()中的的第一行，重新开始游戏
 
 def runGame():#实际的游戏代码都在runGame中
 #在游戏开始并且砖块开始下落前，我们需要将一些变量初始化为游戏开始时候的值。
